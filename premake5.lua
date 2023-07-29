@@ -288,7 +288,7 @@ function CreateProject(config)
         pch_enabled = true
     end
 
-    local name = (is_server and "gmsv_" or "gmcl_") .. (config.name or _workspace.name)
+    local name = (config.name or _workspace.name)
 
     local windows_actions = {
         vs2015 = true,
