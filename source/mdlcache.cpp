@@ -2729,7 +2729,7 @@ int ComputeMaxRealBoneInfluences( vertexFileHeader_t * vertexFile, int lod )
 				// 100% binding to first bone - not really skinned (the first bone is just the model transform)
 				numWeights = 0;
 			}
-			maxWeights = max( numWeights, maxWeights );
+			maxWeights = MAX( numWeights, maxWeights );
 		}
 	}
 	return maxWeights;
@@ -2740,12 +2740,12 @@ int ComputeMaxRealBoneInfluences( vertexFileHeader_t * vertexFile, int lod )
 //-----------------------------------------------------------------------------
 vertexFileHeader_t * CMDLCache::CreateThinVertexes( vertexFileHeader_t * originalData, const studiohdr_t * pStudioHdr, int * cacheLength )
 {
-	int rootLod = min( (int)pStudioHdr->rootLOD, ( originalData->numLODs - 1 ) );
+	int rootLod = MIN( (int)pStudioHdr->rootLOD, ( originalData->numLODs - 1 ) );
 	int numVerts = originalData->numLODVertexes[ rootLod ] + 1; // Add 1 vert to support prefetch during array access
 
 	int numBoneInfluences = ComputeMaxRealBoneInfluences( originalData, rootLod );
 	// Only store (N-1) weights (all N weights sum to 1, so we can re-compute the Nth weight later)
-	int numStoredWeights = max( 0, ( numBoneInfluences - 1 ) );
+	int numStoredWeights = MAX( 0, ( numBoneInfluences - 1 ) );
 
 	int vertexSize = 2*sizeof( Vector ) + numBoneInfluences*sizeof( unsigned char ) + numStoredWeights*sizeof( float );
 	*cacheLength = sizeof( vertexFileHeader_t ) + sizeof( thinModelVertices_t ) + numVerts*vertexSize;
@@ -3305,7 +3305,7 @@ vertexFileHeader_t *CMDLCache::BuildAndCacheVertexData( studiohdr_t *pStudioHdr,
 	}
 
 	bool bNeedsTangentS = IsX360() || (g_pMaterialSystemHardwareConfig->GetDXSupportLevel() >= 80);
-	int rootLOD = min( (int)pStudioHdr->rootLOD, pRawVvdHdr->numLODs - 1 );
+	int rootLOD = MIN( (int)pStudioHdr->rootLOD, pRawVvdHdr->numLODs - 1 );
 
 	// determine final cache footprint, possibly truncated due to lod
 	int cacheLength = Studio_VertexDataSize( pRawVvdHdr, rootLOD, bNeedsTangentS );
