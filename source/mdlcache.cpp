@@ -10,7 +10,9 @@
 //===========================================================================//
 
 #include <memory.h>
+#ifdef _WIN32
 #include "tier0/vprof.h"
+#endif
 #include "tier0/icommandline.h"
 #include "tier1/utllinkedlist.h"
 #include "tier1/utlmap.h"
@@ -1010,7 +1012,9 @@ int CMDLCache::GetRef( MDLHandle_t handle )
 //-----------------------------------------------------------------------------
 void CMDLCache::UnserializeVCollide( MDLHandle_t handle, bool synchronousLoad )
 {
+	#ifdef _WIN32
 	VPROF( "CMDLCache::UnserializeVCollide" );
+	#endif
 
 	// FIXME: Should the vcollde be played into cacheable memory?
 	studiodata_t *pStudioData = m_MDLDict[handle];
@@ -1217,7 +1221,9 @@ void CMDLCache::FreeAnimBlocks( MDLHandle_t handle )
 //-----------------------------------------------------------------------------
 unsigned char *CMDLCache::UnserializeAnimBlock( MDLHandle_t handle, int nBlock )
 {
+	#ifdef _WIN32
 	VPROF( "CMDLCache::UnserializeAnimBlock" );
+	#endif
 
 	if ( IsX360() && g_pQueuedLoader->IsMapLoading() )
 	{
@@ -2028,7 +2034,9 @@ studiohdr_t *CMDLCache::UnserializeMDL( MDLHandle_t handle, void *pData, int nDa
 //-----------------------------------------------------------------------------
 bool CMDLCache::ReadMDLFile( MDLHandle_t handle, const char *pMDLFileName, CUtlBuffer &buf )
 {
+	#ifdef _WIN32
 	VPROF( "CMDLCache::ReadMDLFile" );
+	#endif
 
 	char pFileName[ MAX_PATH ];
 	Q_strncpy( pFileName, pMDLFileName, sizeof( pFileName ) );
@@ -2149,8 +2157,10 @@ studiohdr_t *CMDLCache::GetStudioHdr( MDLHandle_t handle )
 	// Assert( m_pModelCacheSection->IsFrameLocking() );
 	// Assert( m_pMeshCacheSection->IsFrameLocking() );
 
-#if _DEBUG
+#if _DEBUG 
+	#ifdef _WIN32
 	VPROF_INCREMENT_COUNTER( "GetStudioHdr", 1 );
+	#endif
 #endif
 	studiohdr_t *pHdr = (studiohdr_t*)CheckData( m_MDLDict[handle]->m_MDLCache, MDLCACHE_STUDIOHDR );
 	if ( !pHdr )
@@ -2577,7 +2587,9 @@ const char *CMDLCache::GetVTXExtension()
 //-----------------------------------------------------------------------------
 bool CMDLCache::VerifyHeaders( studiohdr_t *pStudioHdr )
 {
+	#ifdef _WIN32
 	VPROF( "CMDLCache::VerifyHeaders" );
+	#endif
 
 	if ( developer.GetInt() < 2 )
 	{
@@ -2646,7 +2658,9 @@ bool CMDLCache::VerifyHeaders( studiohdr_t *pStudioHdr )
 //-----------------------------------------------------------------------------
 vertexFileHeader_t *CMDLCache::CacheVertexData( studiohdr_t *pStudioHdr )
 {
+	#ifdef _WIN32
 	VPROF( "CMDLCache::CacheVertexData" );
+	#endif
 
 	vertexFileHeader_t	*pVvdHdr;
 	MDLHandle_t			handle;

@@ -416,21 +416,21 @@ CreateWorkspace({name = "datacache", abi_compatible = false})
 
         targetsuffix("")
 
-        files({
-            [[garrysmod_common\sourcesdk-minimal\common\studiobyteswap.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\stringregistry.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\studio.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\studio_virtualmodel.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\tier0\pme.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\tier0\PMELib.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\tier0\vprof.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\tier2\fileutils.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\tier2\tier2.cpp]],
-            [[garrysmod_common\sourcesdk-minimal\public\tier3\tier3.cpp]],
-        })
         filter("system:windows")
             files({"source/win32/*.cpp", "source/win32/*.hpp"})
             targetextension(".dll")
+            files({
+                [[garrysmod_common\sourcesdk-minimal\common\studiobyteswap.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\stringregistry.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\studio.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\studio_virtualmodel.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\tier0\pme.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\tier0\PMELib.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\tier0\vprof.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\tier2\fileutils.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\tier2\tier2.cpp]],
+                [[garrysmod_common\sourcesdk-minimal\public\tier3\tier3.cpp]],
+            })
 
         filter("system:linux or macosx")
             files({"source/posix/*.cpp", "source/posix/*.hpp"})
@@ -438,3 +438,12 @@ CreateWorkspace({name = "datacache", abi_compatible = false})
                     targetextension(".so")
 
                 links({"dl", "pthread"})
+                files({
+                    [[garrysmod_common\sourcesdk-minimal\common\studiobyteswap.cpp]],
+                    [[garrysmod_common\sourcesdk-minimal\public\stringregistry.cpp]],
+                    [[garrysmod_common\sourcesdk-minimal\public\studio.cpp]],
+                    [[garrysmod_common\sourcesdk-minimal\public\studio_virtualmodel.cpp]],
+                    [[garrysmod_common\sourcesdk-minimal\public\tier2\fileutils.cpp]],
+                    [[garrysmod_common\sourcesdk-minimal\public\tier2\tier2.cpp]],
+                    [[garrysmod_common\sourcesdk-minimal\public\tier3\tier3.cpp]],
+                })
