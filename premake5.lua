@@ -426,6 +426,7 @@ CreateWorkspace({name = "datacache", abi_compatible = false})
             [[garrysmod_common\sourcesdk-minimal\public\tier0\vprof.cpp]],
             [[garrysmod_common\sourcesdk-minimal\public\tier2\fileutils.cpp]],
             [[garrysmod_common\sourcesdk-minimal\public\tier2\tier2.cpp]],
+            [[garrysmod_common\sourcesdk-minimal\public\tier3\tier3.cpp]],
         })
         filter("system:windows")
             files({"source/win32/*.cpp", "source/win32/*.hpp"})
