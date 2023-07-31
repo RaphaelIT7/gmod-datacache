@@ -10,4 +10,6 @@ jobs:
       USE_PREFIX: "false"
       SOURCESDK_MINIMAL: "RaphaelIT7/sourcesdk-gmod"
       SOURCESDK_MINIMAL_BRANCH: "main"
+      SOURCESDK_MINIMAL_64XBRANCH: "x86-64"
       LINUX_FILEEXTENTION: "so"
+      BUILD_64x: "true"
